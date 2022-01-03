@@ -53,6 +53,7 @@ topFilter.onclick= function(e){
     document.querySelector('#sign-up-board').style.display ="none"
     document.querySelector('#login-board').style.display ="none"
     document.querySelector('#about-us-board').style.display ="none"
+    document.querySelector('#policy-privacy').style.display ="none"
     document.querySelector('#terms-conditions').style.display ="none"
     document.querySelector('#pricing-board').style.display ="none"
     document.querySelector('#carousel img').style.animationPlayState = 'paused'
@@ -72,8 +73,12 @@ let counter = 1;
 let sliderButton = document.querySelectorAll(".slider-button")
 
 function slide(){
-    if(counter==0) {counter =1}
+    if(counter==5){
+        document.querySelector('#tutorial').style.display ="none"
+        document.querySelector('#sign-up-board').style.display ="block"
+    }
     if(counter <5){
+        if(counter==0) {counter =1}
         document.querySelector('.slider').style.transform = `translateX(${-450*counter}px)`
         document.querySelector('.slider-text').style.transform = `translateX(${-450*counter}px)`
         counter++;
@@ -85,9 +90,10 @@ sliderButton.forEach(function(slide){
     slide.onclick = function(){
         document.querySelector('.slider-button.slider-button--active').classList.remove('slider-button--active')
         slide.classList.add('slider-button--active')
-        counter = slide.getAttribute('data-slide')-1
-        document.querySelector('.slider').style.transform = `translateX(${-450*counter}px)`
-        document.querySelector('.slider-text').style.transform = `translateX(${-450*counter}px)`
+        position = slide.getAttribute('data-slide')-1
+        counter = slide.getAttribute('data-slide')
+        document.querySelector('.slider').style.transform = `translateX(${-450*position}px)`
+        document.querySelector('.slider-text').style.transform = `translateX(${-450*position}px)`
     }
 })
 
@@ -119,18 +125,34 @@ document.querySelector('#pricing-btn').addEventListener("click", function(){
     img.style.animationPlayState = 'running'
 })
 
-var isMouseDown = false;
+let isMouseDown = false;
+// let startX;
+// let scrollLeft;
 
 document.querySelector('#carousel img').addEventListener('mousedown',function(e){
     isMouseDown = true;
     this.style.animationPlayState = 'paused'
     this.style.cursor = 'grabbing'
+
+    startX = e.pageX - this.offsetLeft
 })
 document.querySelector('#carousel img').addEventListener('mouseup',function(){
     isMouseDown = false;
     this.style.animationPlayState = 'running'
     this.style.cursor = 'grab'
+    this.style.transform = `translateX({0px)`
+})
+document.querySelector('#carousel img').addEventListener('mouseleave',function(){
+    isMouseDown = false;
+    this.style.animationPlayState = 'running'
+    this.style.transform = `translateX({0px)`
 
+})
+document.querySelector('#carousel img').addEventListener('mousemove',function(e){
+    if(isMouseDown == false) return;
+    this.style.animationPlayState = 'paused'
+    // let x = e.pageX - this.offsetLeft
+    // let walk = x - startX
 })
 
 
