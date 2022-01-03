@@ -7,7 +7,7 @@
 
     }
     .modifier {
-        transform: scale(70%) translateY(-50%);
+        transform: scale(75%) translateY(-50%);
         transform-origin: top center;
     }
     .modifier-board {
@@ -57,7 +57,7 @@
         top:200%;
     }
     .modifier {
-        transform: scale(90%) translateY(-50%);
+        transform: scale(65%) translateY(-50%);
         transform-origin: top center;
     }
     .modifier-board {
