@@ -20,6 +20,9 @@
     z-index: 1000;
     animation: fadeIn 1.2s
 }
+.modal-board::-webkit-scrollbar {
+    display:none;
+}
 /* ======================================================= */
 #tutorial {
     background-color: transparent;
